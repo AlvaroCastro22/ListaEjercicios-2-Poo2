@@ -53,7 +53,7 @@ public class BuscarMembresia extends javax.swing.JFrame {
         notificationArea.setRows(5);
         jScrollPane1.setViewportView(notificationArea);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

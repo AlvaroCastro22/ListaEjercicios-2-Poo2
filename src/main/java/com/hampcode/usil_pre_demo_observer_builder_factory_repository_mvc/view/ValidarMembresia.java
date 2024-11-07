@@ -78,7 +78,7 @@ public class ValidarMembresia extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tableModel);
 
-        jToggleButton1.setText("Verificar");
+        jToggleButton1.setText("Activar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
