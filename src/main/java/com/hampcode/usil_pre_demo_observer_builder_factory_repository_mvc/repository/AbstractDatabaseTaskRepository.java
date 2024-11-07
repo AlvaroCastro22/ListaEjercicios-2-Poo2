@@ -15,11 +15,12 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     
     @Override
     public void addTask(Task task) {
-        String sql = "INSERT INTO tasks (name, isCompleted) VALUES (?, ?)";
+        String sql = "INSERT INTO tasks (name, isCompleted,descripcion) VALUES (?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, task.getName());
             stmt.setBoolean(2, task.isCompleted());
+            stmt.setString(3,task.getDescripcion());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,6 +41,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
                         .id(rs.getInt("id"))
                         .name(rs.getString("name"))
                         .isCompleted(rs.getBoolean("isCompleted"))
+                        .descripcion(rs.getString("descripcion"))
                         .build();
                 tasks.add(task);
             }
@@ -52,12 +54,13 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
 
     @Override
     public void updateTask(Task task) {
-        String sql = "UPDATE tasks SET name = ?, isCompleted = ? WHERE id = ?";
+        String sql = "UPDATE tasks SET name = ?, isCompleted = ?,descripcion=? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, task.getName());
             stmt.setBoolean(2, task.isCompleted());
-            stmt.setInt(3, task.getId());
+            stmt.setString(3,task.getDescripcion());
+            stmt.setInt(4, task.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
