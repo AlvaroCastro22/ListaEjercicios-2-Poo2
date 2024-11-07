@@ -1,6 +1,7 @@
 package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.repository;
 
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Tipo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,12 +16,15 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     
     @Override
     public void addTask(Task task) {
-        String sql = "INSERT INTO tasks (name, isCompleted,descripcion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO tasks2 (name, isCompleted,descripcion,tipo) VALUES (?, ?, ?,?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, task.getName());
             stmt.setBoolean(2, task.isCompleted());
             stmt.setString(3,task.getDescripcion());
+            stmt.setObject(4, task.getTipo().name());
+           
+            
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,7 +34,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     @Override
     public List<Task> getAllTasks() {
         List<Task> tasks = new ArrayList<>();
-        String sql = "SELECT * FROM tasks";
+        String sql = "SELECT * FROM tasks2";
         
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -42,6 +46,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
                         .name(rs.getString("name"))
                         .isCompleted(rs.getBoolean("isCompleted"))
                         .descripcion(rs.getString("descripcion"))
+                        .tipo(Tipo.valueOf(rs.getString("tipo")))
                         .build();
                 tasks.add(task);
             }
@@ -54,13 +59,14 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
 
     @Override
     public void updateTask(Task task) {
-        String sql = "UPDATE tasks SET name = ?, isCompleted = ?,descripcion=? WHERE id = ?";
+        String sql = "UPDATE tasks2 SET name = ?, isCompleted = ?,descripcion=?,tipo=? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, task.getName());
             stmt.setBoolean(2, task.isCompleted());
             stmt.setString(3,task.getDescripcion());
-            stmt.setInt(4, task.getId());
+            stmt.setObject(4, task.getTipo().name());
+            stmt.setInt(5, task.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +75,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
 
     @Override
     public void deleteTask(int id) {
-        String sql = "DELETE FROM tasks WHERE id = ?";
+        String sql = "DELETE FROM tasks2 WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);

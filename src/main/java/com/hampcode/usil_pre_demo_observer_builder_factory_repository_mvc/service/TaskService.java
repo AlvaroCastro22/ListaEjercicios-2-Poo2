@@ -35,4 +35,7 @@ public class TaskService {
     public int[] getTaskStatusCounts() {
         return repository.getTaskStatusCounts();
     }
+    public void deleteTask(int id){
+        repository.deleteTask(id);
+    }
 }

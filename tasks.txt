@@ -1,2 +1,4 @@
-1,Holamundo,false
-2,ddd,true
+1,Holamundo,true,qwe,laboral
+2,ddd,true,qwe,personal
+3,hola,false,qwe,personal
+1,Prueba,false,prueba,laboral

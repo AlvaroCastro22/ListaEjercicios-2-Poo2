@@ -28,4 +28,7 @@ public class TaskController {
     public int[] getTaskStatusCounts() {
         return taskService.getTaskStatusCounts();
     }
+    public void deleteTask(int id){
+        taskService.deleteTask(id);
+    }
 }

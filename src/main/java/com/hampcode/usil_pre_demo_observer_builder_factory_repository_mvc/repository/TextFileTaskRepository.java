@@ -34,7 +34,7 @@ public class TextFileTaskRepository implements TaskRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
+                if (parts.length == 4) {
                     int id = Integer.parseInt(parts[0]);
                     currentId = Math.max(currentId, id + 1); // Incrementa el ID automáticamente
                 }
@@ -49,7 +49,7 @@ public class TextFileTaskRepository implements TaskRepository {
         task.setId(currentId++); // Asigna el ID actual y luego lo incrementa
 
         try (FileWriter writer = new FileWriter(fileName, true)) {
-            writer.write(task.getId() + "," + task.getName() + "," + task.isCompleted() + "\n");
+            writer.write(task.getId() + "," + task.getName() + "," + task.isCompleted()+","+task.getDescripcion() +","+task.getTipo().name()+ "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,15 +63,19 @@ public class TextFileTaskRepository implements TaskRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
+                if (parts.length == 5) {
                     int id = Integer.parseInt(parts[0]);
                     String name = parts[1];
                     boolean isCompleted = Boolean.parseBoolean(parts[2]);
-
+                    String descripcion = parts[3];
+                    String tipo = parts[4];
+                    
                     Task task = Task.builder()
                             .id(id)
                             .name(name)
                             .isCompleted(isCompleted)
+                            .descripcion(descripcion)
+                            .tipo(tipo.equals("laboral") ? Task.Tipo.laboral : Task.Tipo.personal)
                             .build();
                     tasks.add(task);
                 }
@@ -91,7 +95,7 @@ public class TextFileTaskRepository implements TaskRepository {
                 if (t.getId() == task.getId()) {
                     t.setCompleted(task.isCompleted()); // Actualizar estado de completitud
                 }
-                writer.write(t.getId() + "," + t.getName() + "," + t.isCompleted() + "\n");
+                writer.write(t.getId() + "," + t.getName() + "," + t.isCompleted() + ","+task.getDescripcion()+","+task.getTipo().name() +"\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,7 +108,7 @@ public class TextFileTaskRepository implements TaskRepository {
         try (FileWriter writer = new FileWriter(fileName)) {
             for (Task t : tasks) {
                 if (t.getId() != id) {  // Solo reescribe las tareas que no tienen el id especificado
-                    writer.write(t.getId() + "," + t.getName() + "," + t.isCompleted() + "\n");
+                    writer.write(t.getId() + "," + t.getName() + "," + t.isCompleted() +","+t.getDescripcion()+","+t.getTipo().name()+ "\n");
                 }
             }
         } catch (IOException e) {
@@ -121,7 +125,7 @@ public class TextFileTaskRepository implements TaskRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
+                if (parts.length == 5) {
                     boolean isCompleted = Boolean.parseBoolean(parts[2]);
                     if (isCompleted) {
                         completedCount++;

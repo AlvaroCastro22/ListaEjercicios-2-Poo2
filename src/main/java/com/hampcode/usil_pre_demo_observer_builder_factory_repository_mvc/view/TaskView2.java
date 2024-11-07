@@ -7,6 +7,7 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.view;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.controller.TaskController;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.DatabaseType;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Tipo;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.service.TaskService;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,10 +24,12 @@ public class TaskView2 extends javax.swing.JFrame {
      */
     private final TaskController taskController;
     private final HomeView2 homeView;
+    public DatabaseType dbType;
     public TaskView2(DatabaseType dbType, HomeView2 homeView) {
         TaskService taskService = new TaskService(dbType);
         this.taskController = new TaskController(taskService); 
         this.homeView = homeView;
+        this.dbType=dbType;
         initComponents();
         updateTaskTable();
     }
@@ -40,7 +43,7 @@ public class TaskView2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        btnResumen = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         taskNameField = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
@@ -49,11 +52,14 @@ public class TaskView2 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableModel = new javax.swing.JTable();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        Resumen = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        cboBoxTipo = new javax.swing.JComboBox<>();
+        Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,17 +80,17 @@ public class TaskView2 extends javax.swing.JFrame {
 
         tableModel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null,null},
-                {null, null, null,null},
-                {null, null, null,null},
-                {null, null, null,null}
+                {null, null, null,null,null},
+                {null, null, null,null,null},
+                {null, null, null,null,null},
+                {null, null, null,null,null}
             },
             new String [] {
-                "ID", "Nombre", "Completada","Descripcion"
+                "ID", "Nombre", "Completada","Descripcion","Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class,java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class,java.lang.String.class,java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,21 +99,21 @@ public class TaskView2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tableModel);
 
-        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.setText("Verificar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setText("jToggleButton2");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        Resumen.setText("Resumen");
+        Resumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                ResumenActionPerformed(evt);
             }
         });
 
-        jToggleButton3.setText("jToggleButton3");
+        jToggleButton3.setText("Regresar");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
@@ -120,67 +126,95 @@ public class TaskView2 extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        cboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personal", "Laboral" }));
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnResumenLayout = new javax.swing.GroupLayout(btnResumen);
+        btnResumen.setLayout(btnResumenLayout);
+        btnResumenLayout.setHorizontalGroup(
+            btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnResumenLayout.createSequentialGroup()
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnResumenLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                    .addGroup(btnResumenLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(Eliminar)
+                        .addGap(32, 32, 32)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Resumen, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(btnResumenLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnResumenLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(btnResumenLayout.createSequentialGroup()
                         .addComponent(taskNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
                         .addComponent(btnAgregar)
                         .addGap(72, 72, 72))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnResumenLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(30, 30, 30))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        btnResumenLayout.setVerticalGroup(
+            btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnResumenLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(taskNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(btnAgregar)
+                    .addComponent(cboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnResumenLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(btnResumenLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(btnResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2)
-                    .addComponent(jToggleButton3))
-                .addGap(52, 52, 52))
+                    .addComponent(Resumen)
+                    .addComponent(jToggleButton3)
+                    .addComponent(Eliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,12 +222,12 @@ public class TaskView2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -202,8 +236,18 @@ public class TaskView2 extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
             String taskName = taskNameField.getText();
             String taskDescripcion = txtDescripcion.getText();
+            String selectedTipo = cboBoxTipo.getSelectedItem().toString();
+            Tipo tipoElegido = null;
+            switch(selectedTipo){
+                case "Personal":
+                    tipoElegido = Tipo.personal;
+                    break;
+                case "Laboral":
+                    tipoElegido = Tipo.laboral;
+                    break;
+            }
             if (!taskName.isEmpty()) {
-                Task task = Task.builder().name(taskName).isCompleted(false).descripcion(taskDescripcion).build();
+                Task task = Task.builder().name(taskName).isCompleted(false).descripcion(taskDescripcion).tipo(tipoElegido).build();
                 taskController.addTask(task);
                 updateTaskTable();
                 taskNameField.setText("");
@@ -230,16 +274,32 @@ public class TaskView2 extends javax.swing.JFrame {
             }        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void ResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumenActionPerformed
             int[] counts = taskController.getTaskStatusCounts();
             notificationArea.append("Tareas Completadas: " + counts[0] + "\n");
             notificationArea.append("Tareas Pendientes: " + counts[1] + "\n");        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_ResumenActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
             this.dispose();
             homeView.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        BuscarTask buscarTask = new BuscarTask(dbType, this);
+        buscarTask.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int selectedRow = tableModel.getSelectedRow();
+        if(selectedRow != -1){
+        int taskId = (int) tableModel.getValueAt(selectedRow, 0);
+        taskController.deleteTask(taskId);
+        updateTaskTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione una tarea de la lista.");
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,19 +311,22 @@ public class TaskView2 extends javax.swing.JFrame {
         List<Task> tasks = taskController.getAllTasks();
 
         for (Task task : tasks) {
-            model.addRow(new Object[]{task.getId(), task.getName(), task.isCompleted() ? "Sí" : "No",task.getDescripcion()});
+            model.addRow(new Object[]{task.getId(), task.getName(), task.isCompleted() ? "Sí" : "No",task.getDescripcion(),task.getTipo().name()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JToggleButton Resumen;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JPanel btnResumen;
+    private javax.swing.JComboBox<String> cboBoxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JTextArea notificationArea;
     private javax.swing.JTable tableModel;

@@ -11,4 +11,9 @@ public class Task {
     private String name;
     private boolean isCompleted;
     private String descripcion;
+    private Tipo tipo;
+    public enum Tipo {
+        personal,
+        laboral
+    }
 }
