@@ -5,7 +5,7 @@ import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.
 
 public class TaskNotifier implements TaskObserver {
     @Override
-    public String onTaskCompleted(Membresia task) {
-        return "La membresia de '" + task.getNombre_usuario()+ "' ha sido agregada!";
+    public String onLibroDisponible(Membresia task) {
+        return "Tus libros preferidos estan listos para que puedas solicitarlos!";
     }
 }

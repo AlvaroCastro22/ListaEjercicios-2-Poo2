@@ -3,6 +3,6 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.obser
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia;
 
 public interface TaskObserver {
-    String onTaskCompleted(Membresia task);
+    String onLibroDisponible(Membresia task);
 }
 

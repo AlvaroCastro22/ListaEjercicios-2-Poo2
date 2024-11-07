@@ -30,7 +30,7 @@ public class TaskService {
     public String completeTask(Membresia task) {
         task.setEstado_membresia(Estado_membresia.ACTIVA);
         repository.updateTask(task);
-        return notifier.onTaskCompleted(task);
+        return notifier.onLibroDisponible(task);
     }
 
     public int[] getTaskStatusCounts() {
