@@ -7,7 +7,7 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.view;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.controller.TaskController;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.DatabaseType;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Tipo;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Estado_membresia;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.service.TaskService;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -86,7 +86,7 @@ public class TaskView2 extends javax.swing.JFrame {
                 {null, null, null,null,null}
             },
             new String [] {
-                "ID", "Nombre", "Completada","Descripcion","Tipo"
+                "ID", "Nombre_Usuario", "Tipo_membresia","numero","Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -234,16 +234,16 @@ public class TaskView2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-            String taskName = taskNameField.getText();
+            /*String taskName = taskNameField.getText();
             String taskDescripcion = txtDescripcion.getText();
             String selectedTipo = cboBoxTipo.getSelectedItem().toString();
-            Tipo tipoElegido = null;
+            Estado_membresia tipoElegido = null;
             switch(selectedTipo){
                 case "Personal":
-                    tipoElegido = Tipo.personal;
+                    tipoElegido = Estado_membresia.personal;
                     break;
                 case "Laboral":
-                    tipoElegido = Tipo.laboral;
+                    tipoElegido = Estado_membresia.laboral;
                     break;
             }
             if (!taskName.isEmpty()) {
@@ -252,11 +252,11 @@ public class TaskView2 extends javax.swing.JFrame {
                 updateTaskTable();
                 taskNameField.setText("");
                 txtDescripcion.setText("");
-            }        // TODO add your handling code here:
+            }   */     
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-          
+          /*
         int selectedRow = tableModel.getSelectedRow();
             if (selectedRow != -1) {
                 int taskId = (int) tableModel.getValueAt(selectedRow, 0);
@@ -271,7 +271,7 @@ public class TaskView2 extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Seleccione una tarea de la lista.");
-            }        // TODO add your handling code here:
+            }    */
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void ResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumenActionPerformed
@@ -311,7 +311,7 @@ public class TaskView2 extends javax.swing.JFrame {
         List<Task> tasks = taskController.getAllTasks();
 
         for (Task task : tasks) {
-            model.addRow(new Object[]{task.getId(), task.getName(), task.isCompleted() ? "Sí" : "No",task.getDescripcion(),task.getTipo().name()});
+            model.addRow(new Object[]{task.getId(), task.getNombre_usuario(),task.getTipo_membresia(),task.getNumero_libros_permitidos()+"",task.getEstado_membresia().name()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

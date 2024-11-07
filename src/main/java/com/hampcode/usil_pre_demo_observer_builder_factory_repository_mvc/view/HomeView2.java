@@ -90,7 +90,7 @@ public class HomeView2 extends javax.swing.JFrame {
         switch (selectedDb) {
             case "MySQL" -> dbType = DatabaseType.MYSQL;
             case "PostgreSQL" -> dbType = DatabaseType.POSTGRESQL;
-            case "TextFile" -> dbType = DatabaseType.TEXTFILE;
+            
             default -> throw new IllegalArgumentException("Tipo de base de datos no válido");
         }
 

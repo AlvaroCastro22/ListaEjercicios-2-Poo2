@@ -8,12 +8,13 @@ import lombok.Data;
 @Builder
 public class Task {
     private int id;
-    private String name;
-    private boolean isCompleted;
-    private String descripcion;
-    private Tipo tipo;
-    public enum Tipo {
-        personal,
-        laboral
+    private String nombre_usuario;
+    private String tipo_membresia;
+    private int numero_libros_permitidos;
+    private String lista_favoritos;
+    private Estado_membresia estado_membresia;
+    public enum Estado_membresia {
+        ACTIVA,
+        INACTIVA
     }
 }

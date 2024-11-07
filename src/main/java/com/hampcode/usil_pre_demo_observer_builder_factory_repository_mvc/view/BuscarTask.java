@@ -112,12 +112,12 @@ public class BuscarTask extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombre = txtNombre.getText();
+        /*String nombre = txtNombre.getText();
         List<String> lista = taskController.getAllTasks().stream()
                 .filter(n->n.getName().equalsIgnoreCase(nombre))
                 .map(x->x.getName())
                 .collect(Collectors.toList());
-        notificationArea.append(lista.stream().collect(Collectors.joining(" ")));
+        notificationArea.append(lista.stream().collect(Collectors.joining(" ")));*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -15,7 +15,7 @@ public class DatabaseConnectionFactory {
 
         switch (dbType) {
             case MYSQL -> {
-                url = "jdbc:mysql://localhost:3306/taskdb";
+                url = "jdbc:mysql://localhost:3306/bibliotecadb";
                 user = "root";  
                 password = "12345";
                 return DriverManager.getConnection(url, user, password);
@@ -26,10 +26,7 @@ public class DatabaseConnectionFactory {
                 password = "adminadmin";
                 return DriverManager.getConnection(url, user, password);
             }
-            case TEXTFILE -> {
-                // No se necesita conexión de base de datos para archivo de texto
-                return null;
-            }
+            
             default -> throw new IllegalArgumentException("Tipo de base de datos no soportado");
         }
     }

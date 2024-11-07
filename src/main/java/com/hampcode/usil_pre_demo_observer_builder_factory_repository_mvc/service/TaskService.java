@@ -3,6 +3,7 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.servi
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.factory.TaskRepositoryFactory;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.DatabaseType;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Estado_membresia;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.observer.TaskNotifier;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.repository.TaskRepository;
 
@@ -27,7 +28,7 @@ public class TaskService {
     }
 
     public String completeTask(Task task) {
-        task.setCompleted(true);
+        task.setEstado_membresia(Estado_membresia.ACTIVA);
         repository.updateTask(task);
         return notifier.onTaskCompleted(task);
     }

@@ -1,7 +1,7 @@
 package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.repository;
 
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Tipo;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Estado_membresia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,13 +16,14 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     
     @Override
     public void addTask(Task task) {
-        String sql = "INSERT INTO tasks2 (name, isCompleted,descripcion,tipo) VALUES (?, ?, ?,?)";
+        String sql = "INSERT INTO Membresias (nombre_usuario,tipo_membresia,numero_libros_permitidos,estado_membresia,lista_favoritos) VALUES (?, ?, ?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, task.getName());
-            stmt.setBoolean(2, task.isCompleted());
-            stmt.setString(3,task.getDescripcion());
-            stmt.setObject(4, task.getTipo().name());
+            stmt.setString(1, task.getNombre_usuario());
+            stmt.setString(2, task.getTipo_membresia());
+            stmt.setInt(3,task.getNumero_libros_permitidos());
+            stmt.setObject(4, task.getEstado_membresia().name());
+            stmt.setObject(5, task.getLista_favoritos());
            
             
             stmt.executeUpdate();
@@ -34,7 +35,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     @Override
     public List<Task> getAllTasks() {
         List<Task> tasks = new ArrayList<>();
-        String sql = "SELECT * FROM tasks2";
+        String sql = "SELECT * FROM Membresias";
         
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -43,10 +44,11 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
             while (rs.next()) {
                 Task task = Task.builder()
                         .id(rs.getInt("id"))
-                        .name(rs.getString("name"))
-                        .isCompleted(rs.getBoolean("isCompleted"))
-                        .descripcion(rs.getString("descripcion"))
-                        .tipo(Tipo.valueOf(rs.getString("tipo")))
+                        .nombre_usuario(rs.getString("nombre_usuario"))
+                        .tipo_membresia(rs.getString("tipo_membresia"))
+                        .numero_libros_permitidos(rs.getInt("numero_libros_permitidos"))
+                        .estado_membresia(Estado_membresia.valueOf(rs.getString("estado_membresia")))
+                        .lista_favoritos(rs.getString("lista_favoritos"))
                         .build();
                 tasks.add(task);
             }
@@ -59,14 +61,15 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
 
     @Override
     public void updateTask(Task task) {
-        String sql = "UPDATE tasks2 SET name = ?, isCompleted = ?,descripcion=?,tipo=? WHERE id = ?";
+        String sql = "UPDATE Membresias SET nombre_usuario = ?, tipo_membresia = ?,numero_libros_permitidos=?,estado_membresia=?,lista_favoritos=? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, task.getName());
-            stmt.setBoolean(2, task.isCompleted());
-            stmt.setString(3,task.getDescripcion());
-            stmt.setObject(4, task.getTipo().name());
-            stmt.setInt(5, task.getId());
+            stmt.setString(1, task.getNombre_usuario());
+            stmt.setString(2, task.getTipo_membresia());
+            stmt.setInt(3,task.getNumero_libros_permitidos());
+            stmt.setObject(4, task.getEstado_membresia().name());
+            stmt.setObject(5, task.getLista_favoritos());
+            stmt.setInt(6, task.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
