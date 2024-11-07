@@ -23,9 +23,9 @@ public class TaskView2 extends javax.swing.JFrame {
      * Creates new form TaskView2
      */
     private final TaskController taskController;
-    private final HomeView2 homeView;
+    private final Inicio homeView;
     public DatabaseType dbType;
-    public TaskView2(DatabaseType dbType, HomeView2 homeView) {
+    public TaskView2(DatabaseType dbType, Inicio homeView) {
         TaskService taskService = new TaskService(dbType);
         this.taskController = new TaskController(taskService); 
         this.homeView = homeView;
@@ -286,7 +286,7 @@ public class TaskView2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        BuscarTask buscarTask = new BuscarTask(dbType, this);
+        BuscarTask buscarTask = new BuscarTask(dbType);
         buscarTask.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 

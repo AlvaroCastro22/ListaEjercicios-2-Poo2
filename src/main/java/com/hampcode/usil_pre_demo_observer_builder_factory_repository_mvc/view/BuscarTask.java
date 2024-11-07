@@ -23,7 +23,7 @@ public class BuscarTask extends javax.swing.JFrame {
     private final TaskController taskController;
     
     public DatabaseType dbType;
-    public BuscarTask(DatabaseType dbType,TaskView2 tasView) {
+    public BuscarTask(DatabaseType dbType) {
         TaskService taskService = new TaskService(dbType);
         this.taskController = new TaskController(taskService); 
         
@@ -112,12 +112,11 @@ public class BuscarTask extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*String nombre = txtNombre.getText();
-        List<String> lista = taskController.getAllTasks().stream()
-                .filter(n->n.getName().equalsIgnoreCase(nombre))
-                .map(x->x.getName())
+        String tipoMembresia = txtNombre.getText();
+        List<Task> lista = taskController.getAllTasks().stream()
+                .filter(n->n.getTipo_membresia().equalsIgnoreCase(tipoMembresia))
                 .collect(Collectors.toList());
-        notificationArea.append(lista.stream().collect(Collectors.joining(" ")));*/
+        notificationArea.append(lista+"");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
