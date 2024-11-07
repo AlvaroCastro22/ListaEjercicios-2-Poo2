@@ -256,13 +256,13 @@ public class TaskView2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-          /*
+          
         int selectedRow = tableModel.getSelectedRow();
             if (selectedRow != -1) {
                 int taskId = (int) tableModel.getValueAt(selectedRow, 0);
                 Task task = taskController.getAllTasks().stream().filter(t -> t.getId() == taskId).findFirst().orElse(null);
 
-                if (task != null && !task.isCompleted()) {
+                if (task != null && task.getEstado_membresia()==Estado_membresia.INACTIVA) {
                     String notification = taskController.completeTask(task);
                     updateTaskTable();
                     notificationArea.append(notification + "\n");
@@ -271,7 +271,7 @@ public class TaskView2 extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Seleccione una tarea de la lista.");
-            }    */
+            }    
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void ResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumenActionPerformed
