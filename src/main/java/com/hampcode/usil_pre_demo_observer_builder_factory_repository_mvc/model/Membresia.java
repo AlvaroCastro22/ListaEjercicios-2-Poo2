@@ -13,7 +13,7 @@ public class Membresia {
     private int numero_libros_permitidos;
     private String lista_favoritos;
     private Estado_membresia estado_membresia;
-    public enum Estado_membresia {
+    public  enum Estado_membresia {
         ACTIVA,
         INACTIVA
     }

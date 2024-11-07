@@ -19,6 +19,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
         String sql = "INSERT INTO Membresias (nombre_usuario,tipo_membresia,numero_libros_permitidos,estado_membresia,lista_favoritos) VALUES (?, ?, ?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
             stmt.setString(1, task.getNombre_usuario());
             stmt.setString(2, task.getTipo_membresia());
             stmt.setInt(3,task.getNumero_libros_permitidos());

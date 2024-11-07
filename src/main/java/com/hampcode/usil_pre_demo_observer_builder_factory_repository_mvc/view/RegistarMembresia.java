@@ -10,6 +10,8 @@ import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia.Estado_membresia;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.service.TaskService;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -188,7 +190,7 @@ public class RegistarMembresia extends javax.swing.JFrame {
         String nombreUsuario = TextFieldNombre.getText();
         String TipoMembresia = cmbTipo.getSelectedItem().toString();
         int librosPermitidos = Integer.parseInt(txtLibrosPermitidos.getText());
-        
+        List<String> lista = Arrays.asList(txtLibro.getText().split(","));
         Membresia task = Membresia.builder().nombre_usuario(nombreUsuario)
                 .tipo_membresia(TipoMembresia)
                 .numero_libros_permitidos(librosPermitidos)
