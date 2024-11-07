@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Task {
+public class Membresia {
     private int id;
     private String nombre_usuario;
     private String tipo_membresia;

@@ -6,7 +6,7 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.view;
 
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.controller.TaskController;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.DatabaseType;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.service.TaskService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  *
  * @author alvar
  */
-public class BuscarTask extends javax.swing.JFrame {
+public class BuscarMembresia extends javax.swing.JFrame {
 
     /**
      * Creates new form BuscarTask
@@ -23,7 +23,7 @@ public class BuscarTask extends javax.swing.JFrame {
     private final TaskController taskController;
     
     public DatabaseType dbType;
-    public BuscarTask(DatabaseType dbType) {
+    public BuscarMembresia(DatabaseType dbType) {
         TaskService taskService = new TaskService(dbType);
         this.taskController = new TaskController(taskService); 
         
@@ -113,7 +113,7 @@ public class BuscarTask extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String tipoMembresia = txtNombre.getText();
-        List<Task> lista = taskController.getAllTasks().stream()
+        List<Membresia> lista = taskController.getAllTasks().stream()
                 .filter(n->n.getTipo_membresia().equalsIgnoreCase(tipoMembresia))
                 .collect(Collectors.toList());
         notificationArea.append(lista+"");

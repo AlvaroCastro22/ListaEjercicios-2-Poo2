@@ -1,7 +1,7 @@
 package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.repository;
 
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Estado_membresia;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia.Estado_membresia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     protected abstract Connection getConnection() throws SQLException;
     
     @Override
-    public void addTask(Task task) {
+    public void addTask(Membresia task) {
         String sql = "INSERT INTO Membresias (nombre_usuario,tipo_membresia,numero_libros_permitidos,estado_membresia,lista_favoritos) VALUES (?, ?, ?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -33,8 +33,8 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        List<Task> tasks = new ArrayList<>();
+    public List<Membresia> getAllTasks() {
+        List<Membresia> tasks = new ArrayList<>();
         String sql = "SELECT * FROM Membresias";
         
         try (Connection conn = getConnection();
@@ -42,7 +42,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Task task = Task.builder()
+                Membresia task = Membresia.builder()
                         .id(rs.getInt("id"))
                         .nombre_usuario(rs.getString("nombre_usuario"))
                         .tipo_membresia(rs.getString("tipo_membresia"))
@@ -60,7 +60,7 @@ public abstract class AbstractDatabaseTaskRepository implements TaskRepository {
     }
 
     @Override
-    public void updateTask(Task task) {
+    public void updateTask(Membresia task) {
         String sql = "UPDATE Membresias SET nombre_usuario = ?, tipo_membresia = ?,numero_libros_permitidos=?,estado_membresia=?,lista_favoritos=? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

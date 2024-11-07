@@ -2,8 +2,8 @@ package com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.servi
 
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.factory.TaskRepositoryFactory;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.DatabaseType;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task;
-import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Task.Estado_membresia;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia;
+import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.model.Membresia.Estado_membresia;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.observer.TaskNotifier;
 import com.hampcode.usil_pre_demo_observer_builder_factory_repository_mvc.repository.TaskRepository;
 
@@ -19,15 +19,15 @@ public class TaskService {
         this.notifier = new TaskNotifier();
     }
 
-    public void addTask(Task task) {
+    public void addTask(Membresia task) {
         repository.addTask(task);
     }
 
-    public List<Task> getAllTasks() {
+    public List<Membresia> getAllTasks() {
         return repository.getAllTasks();
     }
 
-    public String completeTask(Task task) {
+    public String completeTask(Membresia task) {
         task.setEstado_membresia(Estado_membresia.ACTIVA);
         repository.updateTask(task);
         return notifier.onTaskCompleted(task);
