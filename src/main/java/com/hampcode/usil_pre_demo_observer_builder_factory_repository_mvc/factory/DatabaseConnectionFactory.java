@@ -15,7 +15,7 @@ public class DatabaseConnectionFactory {
 
         switch (dbType) {
             case MYSQL -> {
-                url = "jdbc:mysql://localhost:3306/bibliotecadb";
+                url = "jdbc:mysql://localhost:3306/proyectodb";
                 user = "root";  
                 password = "12345";
                 return DriverManager.getConnection(url, user, password);

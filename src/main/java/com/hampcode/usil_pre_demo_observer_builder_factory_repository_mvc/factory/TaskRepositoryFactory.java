@@ -11,7 +11,7 @@ public class TaskRepositoryFactory {
         return switch (dbType) {
             case MYSQL -> new MySQLTaskRepository();
             case POSTGRESQL -> new PostgreSQLTaskRepository();
-            
+            case TEXTFILE -> null;
         };
     }
 }
